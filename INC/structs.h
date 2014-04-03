@@ -4,8 +4,8 @@
 /* CONSTS */
 /* Les durées de vie sont en millisecondes */
 /* Les facteurs de vitesse de déplacement (MOV_UNIT, etc) sont en case/milliseconde */
-#define WIN_HEIGHT 600
-#define WIN_WIDTH 600
+#define WIN_HEIGHT 1000
+#define WIN_WIDTH 1000
 
 #define X_MIN 0
 #define X_MAX 200
@@ -18,8 +18,8 @@
 #define RIGHT_KEY 'd'
 #define FIRE_KEY ' '
 
-#define MOV_UNIT 0.005
-#define TURN_UNIT 0.0004
+#define MOV_UNIT 0.008
+#define TURN_UNIT 0.0025
 #define RANGE 200
 
 #define MAX_PROJ 16
@@ -37,7 +37,7 @@
 
 #define MAX_PLAYERS 4
 
-#define MAX_FIRE_COOLDOWN 100
+#define MAX_FIRE_COOLDOWN 200
 
 /* STRUCTS */
 typedef struct point_struct{

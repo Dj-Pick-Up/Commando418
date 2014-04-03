@@ -6,6 +6,7 @@
 #include "config.h"
 #include "keyboard.h"
 #include "display.h"
+#include "players.h"
 
 
 void kbDown(unsigned char key, int x, int y){
@@ -52,25 +53,19 @@ void kbUp(unsigned char key, int x, int y){
 
 void kbManage(){
     if (kTab[FORWARD_BIT]){
-	p1.x += cos(p1.angle) * MOV_UNIT * deltaMoment;
-	p1.y += 0;
-	p1.z += sin(p1.angle) * MOV_UNIT * deltaMoment;
+	goForward(&p1);
     }
     if (kTab[BACKWARD_BIT]){
-	p1.x -= cos(p1.angle) * MOV_UNIT * deltaMoment;
-	p1.y -= 0;
-	p1.z -= sin(p1.angle) * MOV_UNIT * deltaMoment;
+	goBackward(&p1);
     }
     if (kTab[LEFT_BIT]){
-	p1.angle -= TURN_UNIT * deltaMoment;
-	while (p1.angle < 0) p1.angle += 2 * M_PI;
+	lookLeft(&p1);
     }
     if (kTab[RIGHT_BIT]){
-	p1.angle += TURN_UNIT * deltaMoment;
-	while (p1.angle >= 2 * M_PI) p1.angle -= 2 * M_PI;
+	lookRight(&p1);
     } 
     if (kTab[FIRE_BIT]){   
-	fire();
+	fire(&p1);
     }
 ///* DEBUG */ printf("(%f,%f,%f) [%f]\n", p1.x, p1.y, p1.z, p1.angle);
 }
@@ -78,10 +73,10 @@ void kbManage(){
 
 void mouseMoveManager(int x, int y){
     if (x < WIN_WIDTH / 2){
-	p1.angle -= TURN_UNIT * deltaMoment;
+	lookLeft(&p1);
     }
     if (x > WIN_WIDTH / 2){
-	p1.angle += TURN_UNIT * deltaMoment;
+	lookRight(&p1);
     }
 
    if (x != WIN_WIDTH / 2 || y != WIN_HEIGHT / 2){ 

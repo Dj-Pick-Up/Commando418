@@ -28,23 +28,6 @@ void ground(void){
 }
 
 
-void fire(){
-    if (p1.proj.n >= MAX_PROJ || p1.fire_cooldown != 0){
-	return;
-    }
-    p1.proj.p[p1.proj.n].x = p1.x + 2 * cos(p1.angle);
-    p1.proj.p[p1.proj.n].y = p1.y - 0.5;
-    p1.proj.p[p1.proj.n].z = p1.z + 2 * sin(p1.angle);
-    p1.proj.p[p1.proj.n].angle = p1.angle;
-    p1.proj.p[p1.proj.n].ttl = PROJ_TTL;
-    p1.proj.n ++;
-
-    p1.fire_cooldown = MAX_FIRE_COOLDOWN;
-
-///* DEBUG */ printf("FIRE\n");
-}
-
-
 void dispProj(void){
     int i;
     
