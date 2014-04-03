@@ -16,3 +16,5 @@
 ----------
  -> Uniformisation de la vitesse de déplacement (dépend maintenant du temps et
  non de la vitesse de l'ordinateur)
+ -> Réduction de la taille du personnage afin qu'il tienne dans une seule case
+ -> Ajout des obstacles, de leur carte et de leur hitbox

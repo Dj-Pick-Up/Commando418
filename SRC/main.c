@@ -9,15 +9,31 @@
 #include "config.h"
 #include "keyboard.h"
 #include "display.h"
+#include "obstacles.h"
 
 
 
 int main(int argc, char * argv[]){
     /* VARS INIT */
+    int i, j;
+
     p1.x = (X_MIN + X_MAX) / 2;
-    p1.y = 1;
+    p1.y = 0.3;
     p1.z = (Z_MIN + Z_MAX) / 2;
     p1.proj.n = 0;
+    for (i=X_MIN; i<X_MAX; i++){
+	for (j=Z_MIN; j<Z_MAX; j++){
+	    setFree(i,j);
+	}
+    }
+
+    /* DEBUG */
+    /* Placement d'obstacles (pour l'instant invisibles) sur la map) */
+    for (i=X_MIN; i<X_MAX; i++){
+	setObstacle(i, 90);
+	setObstacle(i, 110);
+    }
+    setObstacle (102,102);
 
     /* INITIALISATION D'OPENGL */
     glutInit(&argc, argv);
@@ -61,6 +77,9 @@ void display(void){
     glutWireTeapot((X_MIN + X_MAX) / 2);
     glPopMatrix();
 
+    /* Les obstacles */
+    dispAllObst();
+
     /* Les projectiles */
     dispProj();
 
@@ -69,15 +88,15 @@ void display(void){
     glColor3f(0.9, 0, 0);
     glTranslatef(p1.x, p1.y, p1.z);
     glRotatef(((float) - p1.angle) / M_PI * 180 , 0, 1, 0);
-    glutWireTeapot(1);
+    glutWireTeapot(0.3);
     glPopMatrix();
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
     /* POISTIONNEMENT DE L'OBSERVATEUR ET DU FRUSTUM */
-    glFrustum(-1, 1, -1, 1, 1, RANGE);
-    gluLookAt(p1.x - 4 * cos(p1.angle), p1.y + 1, p1.z - 4 * sin(p1.angle), p1.x, p1.y  + 0.8, p1.z, 0, 1, 0);
+    glFrustum(-0.5, 0.5, -0.5, 0.5, 0.5, RANGE);
+    gluLookAt(p1.x - 1 * cos(p1.angle), p1.y + 0.4, p1.z - 1 * sin(p1.angle), p1.x, p1.y  + 0.3, p1.z, 0, 1, 0);
 
     glFlush();
 }
@@ -86,9 +105,8 @@ void display(void){
 void anim(void){
     kbManage();
     getDeltaTime();
+    calcFPS();
     
-    /* Affichage des FPS */
-    printf("FPS : %d\n", (int) (1000 / (float) deltaMoment));
     /* Calcule la progression automatique des projectiles */
     if (p1.fire_cooldown) p1.fire_cooldown -= deltaMoment;
     if (p1.fire_cooldown < 0) p1.fire_cooldown = 0;
@@ -105,3 +123,17 @@ void getDeltaTime(void){
     deltaMoment = curMoment - lastMoment;
     lastMoment = curMoment;
 }
+
+
+void calcFPS(){
+    /* calcule et affiche le nombre d'image par secondes */
+    if (sumMoments > 1000){
+	/* Affichage des FPS */
+	printf("FPS : %d\n", (int) (1000 * samplesMoments / sumMoments));
+	sumMoments = 0;
+	samplesMoments = 0;
+    }
+    sumMoments += deltaMoment;
+    samplesMoments ++;
+}
+

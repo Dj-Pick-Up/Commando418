@@ -5,5 +5,6 @@ int main(int argc, char * argv[]);
 void display(void);
 void anim(void);
 void getDeltaTime(void);
+void calcFPS();
 
 #endif

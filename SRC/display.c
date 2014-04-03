@@ -5,6 +5,7 @@
 #include "structs.h"
 #include "config.h"
 #include "display.h"
+#include "obstacles.h"
 
 
 void ground(void){
@@ -46,7 +47,27 @@ void dispProj(void){
 	glPushMatrix();
 	glColor3f(0.7, 0.7, 0);
 	glTranslatef(p1.proj.p[i].x, p1.proj.p[i].y, p1.proj.p[i].z);
-	glutWireSphere(0.2, 20, 20);
+	glutWireSphere(0.1, 20, 20);
 	glPopMatrix();
     }
+}
+
+
+void dispAllObst(){
+    int i, j;
+
+    for (i=X_MIN; i<X_MAX; i++){
+	for (j=Z_MIN; j<Z_MAX; j++){
+	    if (!isFree(i,j)) dispObst(i,j);
+	}
+    }
+}
+
+
+void dispObst(int x, int z){
+    glPushMatrix();
+    glColor3f(1, 0.5, 0);
+    glTranslatef(x - 0.5, 0.5, z - 0.5);
+    glutWireCube(1);
+    glPopMatrix();
 }

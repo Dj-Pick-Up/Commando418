@@ -3,5 +3,7 @@
 
 void ground(void);
 void dispProj(void);
+void dispAllObst();
+void dispObst(int x, int z);
 
 #endif
