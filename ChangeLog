@@ -1,0 +1,18 @@
+	+------------+
+	| Commando   |
+	|        418 |
+	+------------+
+
++ 01/04/14 [0.1] (idée le 31/03/14)
+-----------------------------------
+ -> Implémentation d'un plateau de jeu basique, sans obstacles
+ -> Modèle du personnage et des projectiles
+ -> Adaption au "multijoueur" (1 humain + IAs)
+ -> Gestion du clavier (multitouches)
+ -> Gestion de la souris
+ -> Implémentation de la théière céleste
+
++ 03/04/14
+----------
+ -> Uniformisation de la vitesse de déplacement (dépend maintenant du temps et
+ non de la vitesse de l'ordinateur)
