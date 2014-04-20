@@ -4,12 +4,14 @@
 #include <GL/glut.h>
 #include <math.h>
 #include <sys/time.h>
+#include <time.h>
 #include "main.h"
 #include "structs.h"
 #include "config.h"
 #include "keyboard.h"
 #include "display.h"
-#include "obstacles.h"
+#include "map.h"
+#include "laby.h"
 
 
 
@@ -17,9 +19,10 @@ int main(int argc, char * argv[]){
     /* VARS INIT */
     int i, j;
 
-    p1.x = (X_MIN + X_MAX) / 2;
+    srand(time(NULL));
+    p1.x = (X_MIN + X_MAX) / 2 + 0.5;
     p1.y = 0.3;
-    p1.z = (Z_MIN + Z_MAX) / 2;
+    p1.z = 0.5;
     p1.proj.n = 0;
     for (i=X_MIN; i<X_MAX; i++){
 	for (j=Z_MIN; j<Z_MAX; j++){
@@ -27,13 +30,10 @@ int main(int argc, char * argv[]){
 	}
     }
 
-    /* DEBUG */
-    /* Placement d'obstacles (pour l'instant invisibles) sur la map) */
-    for (i=X_MIN; i<X_MAX; i++){
-	setObstacle(i, 90);
-	setObstacle(i, 110);
-    }
-    setObstacle (102,102);
+    /* Placement d'obstacles  */
+    printf("> Generation du labyrinthe...\n");
+    createLaby();
+    printf("¤ Labyrinthe créé\n");
 
     /* INITIALISATION D'OPENGL */
     glutInit(&argc, argv);
@@ -72,9 +72,9 @@ void display(void){
     glPushMatrix();
     glTranslatef((X_MIN + X_MAX) / 2, 0, (Z_MIN + Z_MAX) / 2);
     glColor3f(0,0,0);
-    glutSolidTeapot((X_MIN + X_MAX) / 2 + 1);
+    glutSolidTeapot((X_MIN + X_MAX) + 1);
     glColor3f(1,0,1);
-    glutWireTeapot((X_MIN + X_MAX) / 2);
+    glutWireTeapot((X_MIN + X_MAX));
     glPopMatrix();
 
     /* Les obstacles */

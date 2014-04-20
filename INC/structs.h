@@ -9,9 +9,11 @@
 #define WIN_WIDTH 1000
 /* Dimensions du terrain */
 #define X_MIN 0
-#define X_MAX 200
+#define X_MAX 50 
 #define Z_MIN 0
-#define Z_MAX 200
+#define Z_MAX 50
+#define G_WIDTH (X_MAX - X_MIN)
+#define G_HEIGHT (Z_MAX - Z_MIN)
 /* Keybindings */
 #define FORWARD_KEY 'z'
 #define BACKWARD_KEY 's'
@@ -42,6 +44,7 @@
 /* Caractères de la carte */
 #define OBSTACLE_CHAR 1
 #define FREE_CHAR 0
+#define EXIT_CHAR 2
 
 /* STRUCTS */
 typedef struct point_struct{

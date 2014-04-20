@@ -11,6 +11,6 @@ int deltaMoment;
 float sumMoments;
 float samplesMoments;
 /* "Carte" des obstacles */
-char map[X_MAX - X_MIN][Z_MAX - Z_MIN];
+char map[G_WIDTH][G_HEIGHT];
 
 #endif

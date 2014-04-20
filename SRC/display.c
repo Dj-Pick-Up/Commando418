@@ -5,26 +5,53 @@
 #include "structs.h"
 #include "config.h"
 #include "display.h"
-#include "obstacles.h"
+#include "map.h"
 
 
 void ground(void){
-    /* Affiche le sol */
     int x, z;
 
+    /* Affiche le sol */
     glColor3f(0, 1, 1);
     glBegin(GL_LINES);
 
     for (x = X_MIN; x <= X_MAX; x++){
 	glVertex3f(x, 0, Z_MIN);
 	glVertex3f(x, 0, Z_MAX);
+
     }
     for (z = Z_MIN; z <= Z_MAX; z++){
 	glVertex3f(X_MIN, 0, z);
 	glVertex3f(X_MAX, 0, z);
     }
 
+    glEnd();
 
+    /* Affiche les contours */
+    glColor3f(1, 0, 0);
+    glBegin(GL_QUADS);
+
+    for (x = X_MIN; x < X_MAX; x++){
+	glVertex3f(x, 0, Z_MIN);
+	glVertex3f(x+1, 0, Z_MIN);
+	glVertex3f(x+1, 1, Z_MIN);
+	glVertex3f(x, 1, Z_MIN);
+	glVertex3f(x, 0, Z_MAX);
+	glVertex3f(x+1, 0, Z_MAX);
+	glVertex3f(x+1, 1, Z_MAX);
+	glVertex3f(x, 1, Z_MAX);
+    }
+
+    for (z = Z_MIN; z < Z_MAX; z++){
+	glVertex3f(X_MIN, 0, z);
+	glVertex3f(X_MIN, 0, z+1);
+	glVertex3f(X_MIN, 1, z+1);
+	glVertex3f(X_MIN, 1, z);
+	glVertex3f(X_MAX, 0, z);
+	glVertex3f(X_MAX, 0, z+1);
+	glVertex3f(X_MAX, 1, z+1);
+	glVertex3f(X_MAX, 1, z);
+    }
     glEnd();
 }
 
@@ -66,8 +93,10 @@ void dispAllObst(){
 
 void dispObst(int x, int z){
     glPushMatrix();
+    glTranslatef(x + 0.5, 0.5, z + 0.5);
     glColor3f(1, 0.5, 0);
-    glTranslatef(x - 0.5, 0.5, z - 0.5);
+    glutSolidCube(1);
+    glColor3f(1, 0, 1);
     glutWireCube(1);
     glPopMatrix();
 }
