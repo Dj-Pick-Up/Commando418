@@ -25,7 +25,11 @@ void kbDown(unsigned char key, int x, int y){
 	    break;
    	case FIRE_KEY :
 	    kTab[FIRE_BIT] = 1;
-	    break; 
+	    break;
+	case NOCLIP_KEY :
+	    kTab[NOCLIP_BIT] = !kTab[NOCLIP_BIT];
+	    printf("¤ NoClip mode %s\n", kTab[NOCLIP_BIT]?"active":"desactive");
+	    break;
     }
 }
 
@@ -46,7 +50,7 @@ void kbUp(unsigned char key, int x, int y){
 	    break;
    	case FIRE_KEY :
 	    kTab[FIRE_BIT] = 0;
-	    break; 
+	    break;
     }
 }
 

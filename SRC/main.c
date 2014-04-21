@@ -23,6 +23,7 @@ int main(int argc, char * argv[]){
     p1.x = (X_MIN + X_MAX) / 2 + 0.5;
     p1.y = 0.3;
     p1.z = 0.5;
+    p1.angle = M_PI / 2;
     p1.proj.n = 0;
     for (i=X_MIN; i<X_MAX; i++){
 	for (j=Z_MIN; j<Z_MAX; j++){
@@ -111,6 +112,11 @@ void anim(void){
     if (p1.fire_cooldown) p1.fire_cooldown -= deltaMoment;
     if (p1.fire_cooldown < 0) p1.fire_cooldown = 0;
     glutPostRedisplay();
+
+    /* Teste si l'on a atteint l'arrivée */
+    if (floor(p1.z) == Z_MAX - 1 && floor(p1.x) == exit_x){
+	win();
+    }
 }
 
 
@@ -137,3 +143,8 @@ void calcFPS(){
     samplesMoments ++;
 }
 
+
+void win(){
+    printf("Congratulations ! You won !\n");
+    exit(EXIT_SUCCESS);
+}

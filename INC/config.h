@@ -12,5 +12,7 @@ float sumMoments;
 float samplesMoments;
 /* "Carte" des obstacles */
 char map[G_WIDTH][G_HEIGHT];
+/* Coordonnée de l'arrivée */
+int exit_x;
 
 #endif

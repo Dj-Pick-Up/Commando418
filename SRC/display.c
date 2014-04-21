@@ -53,7 +53,24 @@ void ground(void){
 	glVertex3f(X_MAX, 1, z);
     }
     glEnd();
-}
+
+    /* Affiche l'arrivée */
+    glBegin(GL_QUADS);
+    glColor3f(0, 0.9, 0.1);
+
+    glVertex3f(exit_x, 0, Z_MAX-1);
+    glVertex3f(exit_x, 0, Z_MAX);
+    glVertex3f(exit_x+1, 0, Z_MAX);
+    glVertex3f(exit_x+1, 0, Z_MAX-1);
+
+    glEnd();
+
+    /* Signale l'arrivée */
+    glPushMatrix();
+    glTranslatef(exit_x + 0.5, 10, Z_MAX - 0.5);
+    glutWireTorus(2, 2.5, 20, 20);
+    glPopMatrix();
+}   
 
 
 void dispProj(void){

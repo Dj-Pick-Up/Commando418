@@ -14,5 +14,5 @@ void setFree(int x, int z){
 
 
 char isFree(int x, int z){
-    return(map[x - X_MIN][z - Z_MIN] == FREE_CHAR);
+    return(map[x - X_MIN][z - Z_MIN] != OBSTACLE_CHAR);
 }

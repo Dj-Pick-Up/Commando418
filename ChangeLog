@@ -24,3 +24,9 @@
  -> Ajout d'une fonction de création de labyrinthe
  -> Modification du positionnement des obstacles
  -> Réduction du terrain (pour limiter les lags et rendre le jeu finissable)
+
++ 21/04/14
+----------
+ -> Ajout du mode NoClip pour le débugage
+ -> Ajout d'une zone d'arrivée marquée et signalée par un donut volant
+ -> Ainsi qu'une fonction de victoire quand on atteint la dalle de fin
