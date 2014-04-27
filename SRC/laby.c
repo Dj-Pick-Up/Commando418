@@ -39,7 +39,7 @@ char testLaby(){
 	    out --;
 	}
 	if (!out){
-	    map[i][G_HEIGHT - 1] = EXIT_CHAR;
+//	    map[i][G_HEIGHT - 1] = EXIT_CHAR;
 	    exit_x = i + X_MIN;
 	}
     }

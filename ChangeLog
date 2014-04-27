@@ -30,3 +30,10 @@
  -> Ajout du mode NoClip pour le débugage
  -> Ajout d'une zone d'arrivée marquée et signalée par un donut volant
  -> Ainsi qu'une fonction de victoire quand on atteint la dalle de fin
+
++ 27/04/14
+----------
+ -> Implémentation de la gestion des obstacles par 4-arbre
+ -> Limitation de la portée de vision grâce au 4-arbre
+ -> Ajout d'un mode de caméra "aérienne" avec des transitions "douces"
+ -> Ajout d'un mode avec portée augmentée avec transition "douce"

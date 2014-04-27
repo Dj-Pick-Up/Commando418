@@ -117,3 +117,37 @@ void dispObst(int x, int z){
     glutWireCube(1);
     glPopMatrix();
 }
+
+
+/* AFFICHAGE DEPUIS LE 4-TREE */
+void dispWall(int x1, int z1, int x2, int z2){
+    glColor3f(1, 0.5, 0);
+    glBegin(GL_QUADS);
+    glVertex3f(x1, 0, z1);
+    glVertex3f(x2, 0, z2);
+    glVertex3f(x2, 1, z2);
+    glVertex3f(x1, 1, z1);
+    glEnd();
+}
+
+
+void dispRoof(int x1, int z1, int x2, int z2){
+    glColor3f(1, 0.5, 0);
+    glBegin(GL_QUADS);
+    glVertex3f(x1, 1, z1);
+    glVertex3f(x1, 1, z2);
+    glVertex3f(x2, 1, z2);
+    glVertex3f(x2, 1, z1);
+    glEnd();
+}
+
+
+void dispGround(int x1, int z1, int x2, int z2){
+    glColor3f(0, 1, 1);
+    glBegin(GL_QUADS);
+    glVertex3f(x1, 0, z1);
+    glVertex3f(x1, 0, z2);
+    glVertex3f(x2, 0, z2);
+    glVertex3f(x2, 0, z1);
+    glEnd();
+}

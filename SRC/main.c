@@ -12,6 +12,7 @@
 #include "display.h"
 #include "map.h"
 #include "laby.h"
+#include "map2arbre.h"
 
 
 
@@ -30,11 +31,17 @@ int main(int argc, char * argv[]){
 	    setFree(i,j);
 	}
     }
+    cam_height = 0;
+    cam_range = MIN_RANGE;
 
     /* Placement d'obstacles  */
     printf("> Generation du labyrinthe...\n");
     createLaby();
     printf("¤ Labyrinthe créé\n");
+    printf("> Transformation de la map en 4-arbre...\n");
+    genTree();
+    printf("¤ Arbre généré\n");
+///* DEBUG */ printTree();
 
     /* INITIALISATION D'OPENGL */
     glutInit(&argc, argv);
@@ -70,16 +77,18 @@ void display(void){
     ground();
     
     /* La théière céleste */
-    glPushMatrix();
-    glTranslatef((X_MIN + X_MAX) / 2, 0, (Z_MIN + Z_MAX) / 2);
-    glColor3f(0,0,0);
-    glutSolidTeapot((X_MIN + X_MAX) + 1);
-    glColor3f(1,0,1);
-    glutWireTeapot((X_MIN + X_MAX));
-    glPopMatrix();
+//    glPushMatrix();
+//    glTranslatef((X_MIN + X_MAX) / 2, 0, (Z_MIN + Z_MAX) / 2);
+//    glColor3f(0,0,0);
+//    glutSolidTeapot((X_MIN + X_MAX) + 1);
+//    glColor3f(1,0,1);
+//    glutWireTeapot((X_MIN + X_MAX));
+//    glPopMatrix();
 
     /* Les obstacles */
-    dispAllObst();
+    // Anciennement dispAllObst()
+    // Maintenant optimisé grâce au quad-tree
+    dispTree();
 
     /* Les projectiles */
     dispProj();
@@ -96,8 +105,8 @@ void display(void){
     glLoadIdentity();
 
     /* POISTIONNEMENT DE L'OBSERVATEUR ET DU FRUSTUM */
-    glFrustum(-0.5, 0.5, -0.5, 0.5, 0.5, RANGE);
-    gluLookAt(p1.x - 1 * cos(p1.angle), p1.y + 0.4, p1.z - 1 * sin(p1.angle), p1.x, p1.y  + 0.3, p1.z, 0, 1, 0);
+    glFrustum(-0.5, 0.5, -0.5, 0.5, 0.5, MAX_RANGE);
+    gluLookAt(p1.x - 1 * cos(p1.angle), p1.y + 0.4 + cam_height, p1.z - 1 * sin(p1.angle), p1.x, p1.y  + 0.3, p1.z, 0, 1, 0);
 
     glFlush();
 }
@@ -107,6 +116,22 @@ void anim(void){
     kbManage();
     getDeltaTime();
     calcFPS();
+
+    /* Ajuste le niveau de la caméra */
+    if (kTab[CAM_BIT] && cam_height < MAX_CAM_HEIGHT){
+	cam_height += CAM_MOV * deltaMoment;
+    }
+    if (!kTab[CAM_BIT] && cam_height > 0){
+	cam_height -= CAM_MOV * deltaMoment;
+    }
+    /* Ajuste la portée de la caméra */
+    if (kTab[RANGE_BIT] && cam_range < MAX_RANGE){
+	cam_range += RANGE_MOV * deltaMoment;
+    }
+    if (!kTab[RANGE_BIT] && cam_range > MIN_RANGE){
+	cam_range -= RANGE_MOV * deltaMoment;
+    }
+
     
     /* Calcule la progression automatique des projectiles */
     if (p1.fire_cooldown) p1.fire_cooldown -= deltaMoment;
@@ -133,7 +158,7 @@ void getDeltaTime(void){
 
 void calcFPS(){
     /* calcule et affiche le nombre d'image par secondes */
-    if (sumMoments > 1000){
+    if (sumMoments > 1000 || sumMoments < 0){
 	/* Affichage des FPS */
 	printf("FPS : %d\n", (int) (1000 * samplesMoments / sumMoments));
 	sumMoments = 0;
