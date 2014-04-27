@@ -43,6 +43,9 @@ int main(int argc, char * argv[]){
     printf("¤ Arbre généré\n");
 ///* DEBUG */ printTree();
 
+    /* INSTRUCTIONS */
+    printf("Bienvenue dans Commando 418 !\nLe but de ce jeu est d'atteindre la sortie du labyrinthe, signalée par un donut vert.\n\nCONTROLES\n---------\n%c pour avancer\n%c pour reculer\n%c (ou mouvement de la souris) pour regarder à droite\n%c (ou mouvement de la souris) pour regarder à gauche\n%c ou clic gauche pour tirer\n\nCONTROLES AVANCES / CHEAT\n-------------------------\n%c pour changer de mode de camera\n%c pour changer la portee de vue\n%c pour activer/desactiver le mode noclip\n%c pour passer en mode debug\n", FORWARD_KEY, BACKWARD_KEY, RIGHT_KEY, LEFT_KEY, FIRE_KEY, CAM_KEY, RANGE_KEY, NOCLIP_KEY, DEBUG_KEY);
+
     /* INITIALISATION D'OPENGL */
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE | GLUT_DEPTH);
@@ -115,7 +118,7 @@ void display(void){
 void anim(void){
     kbManage();
     getDeltaTime();
-    calcFPS();
+    if (kTab[DEBUG_BIT]) calcFPS();
 
     /* Ajuste le niveau de la caméra */
     if (kTab[CAM_BIT] && cam_height < MAX_CAM_HEIGHT){

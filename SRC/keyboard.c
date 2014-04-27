@@ -28,15 +28,19 @@ void kbDown(unsigned char key, int x, int y){
 	    break;
 	case NOCLIP_KEY :
 	    kTab[NOCLIP_BIT] = !kTab[NOCLIP_BIT];
-	    printf("¤ NoClip mode %s\n", kTab[NOCLIP_BIT]?"active":"desactive");
+	    if (kTab[DEBUG_BIT]) printf("¤ NoClip mode %s\n", kTab[NOCLIP_BIT]?"active":"desactive");
 	    break;
 	case CAM_KEY :
 	    kTab[CAM_BIT] = !kTab[CAM_BIT];
-	    printf("¤ Camera en mode %s\n", kTab[CAM_BIT]?"aerien":"vue 3e personne");
+	    if (kTab[DEBUG_BIT]) printf("¤ Camera en mode %s\n", kTab[CAM_BIT]?"aerien":"vue 3e personne");
 	    break;
 	case RANGE_KEY :
 	    kTab[RANGE_BIT] = !kTab[RANGE_BIT];
-	    printf("¤ Portée visuelle à %d\n", kTab[RANGE_BIT]?MAX_RANGE:MIN_RANGE);
+	    if (kTab[DEBUG_BIT]) printf("¤ Portée visuelle à %d\n", kTab[RANGE_BIT]?MAX_RANGE:MIN_RANGE);
+	    break;
+	case DEBUG_KEY :
+	    kTab[DEBUG_BIT] = !kTab[DEBUG_BIT];
+	    printf("¤ DEBUG mode %s\n", kTab[DEBUG_BIT]?"active":"desactive");
 	    break;
     }
 }

@@ -26,6 +26,7 @@
 #define FIRE_KEY ' '
 #define NOCLIP_KEY 'n'
 #define CAM_KEY 'c'
+#define DEBUG_KEY 'g'
 #define RANGE_KEY 'r'
 /* Dimensions de la hitbox du joueur */
 #define X_HITBOX 0.4
@@ -41,7 +42,7 @@
 #define PROJ_TTL 2000
 #define MAX_FIRE_COOLDOWN 200
 /* Matrice des états des touches */
-#define NB_KEYS 8
+#define NB_KEYS 9
 #define FORWARD_BIT 0
 #define BACKWARD_BIT 1
 #define LEFT_BIT 2
@@ -49,7 +50,8 @@
 #define FIRE_BIT 4
 #define NOCLIP_BIT 5
 #define CAM_BIT 6
-#define RANGE_BIT 7
+#define DEBUG_BIT 7
+#define RANGE_BIT 8
 /* Nombre maximal de joueurs ou équivalent (IA) */
 #define MAX_PLAYERS 4
 /* Caractères de la carte */
