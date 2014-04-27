@@ -97,28 +97,6 @@ void dispProj(void){
 }
 
 
-void dispAllObst(){
-    int i, j;
-
-    for (i=X_MIN; i<X_MAX; i++){
-	for (j=Z_MIN; j<Z_MAX; j++){
-	    if (!isFree(i,j)) dispObst(i,j);
-	}
-    }
-}
-
-
-void dispObst(int x, int z){
-    glPushMatrix();
-    glTranslatef(x + 0.5, 0.5, z + 0.5);
-    glColor3f(1, 0.5, 0);
-    glutSolidCube(1);
-    glColor3f(1, 0, 1);
-    glutWireCube(1);
-    glPopMatrix();
-}
-
-
 /* AFFICHAGE DEPUIS LE 4-TREE */
 void dispWall(int x1, int z1, int x2, int z2){
     glColor3f(1, 0.5, 0);
