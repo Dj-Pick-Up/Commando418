@@ -127,6 +127,9 @@ void anim(void){
     if (!kTab[CAM_BIT] && cam_height > 0){
 	cam_height -= CAM_MOV * deltaMoment;
     }
+    if (cam_height < 0){
+	cam_height = 0;
+    }
     /* Ajuste la portée de la caméra */
     if (kTab[RANGE_BIT] && cam_range < MAX_RANGE){
 	cam_range += RANGE_MOV * deltaMoment;
