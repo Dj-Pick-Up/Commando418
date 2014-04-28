@@ -20,6 +20,7 @@
 int main(int argc, char * argv[]){
     /* VARS INIT */
     int i, j;
+    struct timeval startTimeTV;
 
     srand(time(NULL));
     p1.x = (X_MIN + X_MAX) / 2 + 0.5;
@@ -34,7 +35,9 @@ int main(int argc, char * argv[]){
 	}
     }
     cam_height = 0;
-    cam_range = MIN_RANGE;
+    cam_range = MIN_RANGE; 
+    gettimeofday(&startTimeTV, NULL);
+    startTime = (startTimeTV.tv_usec / 1000) + 1000 * startTimeTV.tv_sec;
 
     /* Placement d'obstacles  */
     printf("> Generation du labyrinthe...\n");
@@ -182,7 +185,17 @@ void calcFPS(){
 
 
 void win(){
-    printf("¤ Congratulations ! You won !\n");
+    struct timeval nowTV;
+    int now;
+    int duration, min, sec;
+
+    gettimeofday(&nowTV, NULL); 
+    now = (nowTV.tv_usec / 1000) + 1000 * nowTV.tv_sec;
+    duration = now - startTime;
+    min = duration / 60000;
+    sec = (duration % 60000) / 1000;
+
+    printf("¤ Congratulations ! You won !\n¤ Your time is %d:%d\n", min, sec);
     properQuit();
 }
 

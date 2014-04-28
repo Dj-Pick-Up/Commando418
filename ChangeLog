@@ -44,3 +44,4 @@
  -> Ajout d'une touche d'arrêt du jeu
  -> Ajout d'une fonction propre d'arrêt
  -> Implémentation du rebond des projectiles sur les murs
+ -> Ajout d'un timer

@@ -9,6 +9,7 @@ keyTab kTab;
 /* Mesure du temps */
 int lastMoment;
 int deltaMoment;
+int startTime;
 /* Calcul des FPS */
 int sumMoments;
 int samplesMoments;
