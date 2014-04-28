@@ -58,6 +58,7 @@ char isLeaf(karbre tree){
     return(kRacine(tree) != MIXED_CHAR);
 }
 
+
 void printTree(){
     kAfficher(mapTree, printLeaf);
 }

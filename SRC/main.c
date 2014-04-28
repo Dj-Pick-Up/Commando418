@@ -13,6 +13,7 @@
 #include "map.h"
 #include "laby.h"
 #include "map2arbre.h"
+#include "players.h"
 
 
 
@@ -26,6 +27,7 @@ int main(int argc, char * argv[]){
     p1.z = 0.5;
     p1.angle = M_PI / 2;
     p1.proj.n = 0;
+    p1.health = MAX_HEALTH;
     for (i=X_MIN; i<X_MAX; i++){
 	for (j=Z_MIN; j<Z_MAX; j++){
 	    setFree(i,j);
@@ -44,7 +46,7 @@ int main(int argc, char * argv[]){
 ///* DEBUG */ printTree();
 
     /* INSTRUCTIONS */
-    printf("Bienvenue dans Commando 418 !\nLe but de ce jeu est d'atteindre la sortie du labyrinthe, signalée par un donut vert.\n\nCONTROLES\n---------\n%c pour avancer\n%c pour reculer\n%c (ou mouvement de la souris) pour regarder à droite\n%c (ou mouvement de la souris) pour regarder à gauche\n%c ou clic gauche pour tirer\n\nCONTROLES AVANCES / CHEAT\n-------------------------\n%c pour changer de mode de camera\n%c pour changer la portee de vue\n%c pour activer/desactiver le mode noclip\n%c pour passer en mode debug\n", FORWARD_KEY, BACKWARD_KEY, RIGHT_KEY, LEFT_KEY, FIRE_KEY, CAM_KEY, RANGE_KEY, NOCLIP_KEY, DEBUG_KEY);
+    printf("Bienvenue dans Commando 418 !\nLe but de ce jeu est d'atteindre la sortie du labyrinthe, signalée par un donut vert.\n\nCONTROLES\n---------\n%c pour avancer\n%c pour reculer\n%c (ou mouvement de la souris) pour regarder à droite\n%c (ou mouvement de la souris) pour regarder à gauche\n%c ou clic gauche pour tirer\n%c pour quitter\n\nCONTROLES AVANCES / CHEAT\n-------------------------\n%c pour changer de mode de camera\n%c pour changer la portee de vue\n%c pour activer/desactiver le son\n%c pour activer/desactiver le mode noclip\n%c pour passer en mode debug\n", FORWARD_KEY, BACKWARD_KEY, RIGHT_KEY, LEFT_KEY, FIRE_KEY, EXIT_KEY, CAM_KEY, RANGE_KEY, MUTE_KEY, NOCLIP_KEY, DEBUG_KEY);
 
     /* INITIALISATION D'OPENGL */
     glutInit(&argc, argv);
@@ -94,7 +96,7 @@ void display(void){
     dispTree();
 
     /* Les projectiles */
-    dispProj();
+    dispAllProj();
 
     /* Le personnage */
     glPushMatrix();
@@ -140,14 +142,18 @@ void anim(void){
 
     
     /* Calcule la progression automatique des projectiles */
-    if (p1.fire_cooldown) p1.fire_cooldown -= deltaMoment;
-    if (p1.fire_cooldown < 0) p1.fire_cooldown = 0;
-    glutPostRedisplay();
+    manageProj(&p1);
 
+    /* Teste si l'on est mort */
+    if (p1.health <= 0){
+	lose();
+    }
     /* Teste si l'on a atteint l'arrivée */
     if (floor(p1.z) == Z_MAX - 1 && floor(p1.x) == exit_x){
 	win();
     }
+
+    glutPostRedisplay();
 }
 
 
@@ -176,6 +182,19 @@ void calcFPS(){
 
 
 void win(){
-    printf("Congratulations ! You won !\n");
+    printf("¤ Congratulations ! You won !\n");
+    properQuit();
+}
+
+
+void lose(){
+    printf("¤ Sorry ! You lose the game !\n");
+    properQuit();
+}
+
+
+void properQuit(){
+    kFree(mapTree);
+    printf("¤ Bye !\n¤ Merci d'avoir joue !\n");
     exit(EXIT_SUCCESS);
 }

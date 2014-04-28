@@ -73,24 +73,20 @@ void ground(void){
 }   
 
 
-void dispProj(void){
+void dispAllProj(){
+    // Affichera tous les projectiles
+    // En attendant, il n'y a que le joueur, donc...
+    dispProj(&p1);
+}
+
+
+void dispProj(player * p){
     int i;
-    
-    for (i=0; i<p1.proj.n; i++){
-///* DEBUG */ printf("P : (%f;%f,%f) [%f] <%d>\n", p1.proj.p[i].x, p1.proj.p[i].y, p1.proj.p[i].z, p1.proj.p[i].angle, p1.proj.p[i].ttl);
-	p1.proj.p[i].ttl -= deltaMoment;
-	p1.proj.p[i].ttl = (p1.proj.p[i].ttl < 0)?0:p1.proj.p[i].ttl;
-	if (p1.proj.p[i].ttl == 0){
-	    if (i != p1.proj.n - 1){
-		p1.proj.p[i] = p1.proj.p[p1.proj.n - 1];
-	    }
-	    p1.proj.n --;
-	}
-	p1.proj.p[i].x += cos(p1.proj.p[i].angle) * PROJ_MOV * deltaMoment;
-	p1.proj.p[i].z += sin(p1.proj.p[i].angle) * PROJ_MOV * deltaMoment;
+
+    for (i=0; i<p->proj.n; i++){
 	glPushMatrix();
 	glColor3f(0.7, 0.7, 0);
-	glTranslatef(p1.proj.p[i].x, p1.proj.p[i].y, p1.proj.p[i].z);
+	glTranslatef(p->proj.p[i].x, p->proj.p[i].y, p->proj.p[i].z);
 	glutWireSphere(0.1, 20, 20);
 	glPopMatrix();
     }

@@ -7,6 +7,7 @@
 #include "keyboard.h"
 #include "display.h"
 #include "players.h"
+#include "main.h"
 
 
 void kbDown(unsigned char key, int x, int y){
@@ -41,6 +42,13 @@ void kbDown(unsigned char key, int x, int y){
 	case DEBUG_KEY :
 	    kTab[DEBUG_BIT] = !kTab[DEBUG_BIT];
 	    printf("¤ DEBUG mode %s\n", kTab[DEBUG_BIT]?"active":"desactive");
+	    break;
+	case MUTE_KEY :
+	    kTab[MUTE_BIT] = !kTab[MUTE_BIT];
+	    if (kTab[DEBUG_BIT]) printf("¤ Mode silencieux %s\n", kTab[MUTE_BIT]?"active":"desactive");
+	    break;
+	case EXIT_KEY :
+	    properQuit();
 	    break;
     }
 }

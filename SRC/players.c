@@ -56,11 +56,50 @@ void fire(player * p){
     p->proj.p[p->proj.n].x = p->x + cos(p->angle);
     p->proj.p[p->proj.n].y = p->y - 0.1;
     p->proj.p[p->proj.n].z = p->z + sin(p->angle);
-    p->proj.p[p->proj.n].angle = p->angle;
+    p->proj.p[p->proj.n].d_x = cos(p->angle) * PROJ_MOV;
+    p->proj.p[p->proj.n].d_z = sin(p->angle) * PROJ_MOV;
     p->proj.p[p->proj.n].ttl = PROJ_TTL;
     p->proj.n ++;
 
     p->fire_cooldown = MAX_FIRE_COOLDOWN;
+}
 
-///* DEBUG */ printf("FIRE\n");
+
+void manageProj(player * p){
+    int i;
+    float dx, dz;
+
+    /* Teste le cooldown global de l'arme */    
+    if (p->fire_cooldown) p->fire_cooldown -= deltaMoment;
+    if (p->fire_cooldown < 0) p->fire_cooldown = 0;
+
+    for (i=0; i<p->proj.n; i++){
+///* DEBUG */ printf("P : (%f;%f,%f) [%f] <%d>\n", p->proj.p[i].x, p->proj.p[i].y, p->proj.p[i].z, p->proj.p[i].angle, p->proj.p[i].ttl);
+	p->proj.p[i].ttl -= deltaMoment;
+	p->proj.p[i].ttl = (p->proj.p[i].ttl < 0)?0:p->proj.p[i].ttl;
+	dx = p->proj.p[i].d_x * deltaMoment;
+	dz = p->proj.p[i].d_z * deltaMoment;
+	
+	/* Si le projectile est trop vieux, il "meurt" */
+	if (p->proj.p[i].ttl == 0){
+	    if (i != p->proj.n - 1){
+		p->proj.p[i] = p->proj.p[p->proj.n - 1];
+	    }
+	    p->proj.n --;
+	}
+
+	/* S'il heurte un mur, il rebondit */
+	if (!isFree(p->proj.p[i].x + dx, p->proj.p[i].z) || p->proj.p[i].x + dx < X_MIN || p->proj.p[i].x + dx > X_MAX){
+	    dx = -dx;
+	    p->proj.p[i].d_x = -p->proj.p[i].d_x;
+	}
+	if (!isFree(p->proj.p[i].x, p->proj.p[i].z + dz) || p->proj.p[i].z + dz < Z_MIN || p->proj.p[i].z + dz > Z_MAX){
+	    dz = -dz;
+	    p->proj.p[i].d_z = -p->proj.p[i].d_z;
+	}
+
+	/* Avancée */
+	p->proj.p[i].x += dx;
+	p->proj.p[i].z += dz;
+    }
 }

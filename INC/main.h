@@ -7,5 +7,7 @@ void anim(void);
 void getDeltaTime(void);
 void calcFPS();
 void win();
+void lose();
+void properQuit();
 
 #endif

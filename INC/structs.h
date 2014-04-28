@@ -28,6 +28,8 @@
 #define CAM_KEY 'c'
 #define DEBUG_KEY 'g'
 #define RANGE_KEY 'r'
+#define MUTE_KEY 'm'
+#define EXIT_KEY 'e'
 /* Dimensions de la hitbox du joueur */
 #define X_HITBOX 0.4
 #define Z_HITBOX 0.4
@@ -42,7 +44,7 @@
 #define PROJ_TTL 2000
 #define MAX_FIRE_COOLDOWN 200
 /* Matrice des états des touches */
-#define NB_KEYS 9
+#define NB_KEYS 10
 #define FORWARD_BIT 0
 #define BACKWARD_BIT 1
 #define LEFT_BIT 2
@@ -52,6 +54,7 @@
 #define CAM_BIT 6
 #define DEBUG_BIT 7
 #define RANGE_BIT 8
+#define MUTE_BIT 9
 /* Nombre maximal de joueurs ou équivalent (IA) */
 #define MAX_PLAYERS 4
 /* Caractères de la carte */
@@ -63,6 +66,8 @@
 #define MAX_CAM_HEIGHT 30
 #define CAM_MOV 0.04
 #define RANGE_MOV 0.1
+/* Détails sur le joueur */
+#define MAX_HEALTH 20
 
 /* STRUCTS */
 typedef struct point_struct{
@@ -76,7 +81,8 @@ typedef struct projectile_struct{
     float x;	    //	|
     float y;	    //	|> coordonnées
     float z;	    //	|
-    float angle;    // angle de déplacement sur le plan (x,z)
+    float d_x;	    // déplacement sur l'axe x
+    float d_z;	    // déplacement sur l'axe z
     int ttl;	    // durée de vie
 }projectile;
 
@@ -91,6 +97,7 @@ typedef struct player_struct{
     float y;
     float z;
     float angle;
+    int health;
     projectiles proj;
     int fire_cooldown;
 }player;

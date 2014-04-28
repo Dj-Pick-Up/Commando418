@@ -31,9 +31,16 @@
  -> Ajout d'une zone d'arrivée marquée et signalée par un donut volant
  -> Ainsi qu'une fonction de victoire quand on atteint la dalle de fin
 
-+ 27/04/14
++ 27/04/14 [0.5]
 ----------
  -> Implémentation de la gestion des obstacles par 4-arbre
  -> Limitation de la portée de vision grâce au 4-arbre
  -> Ajout d'un mode de caméra "aérienne" avec des transitions "douces"
  -> Ajout d'un mode avec portée augmentée avec transition "douce"
+
++ 28/04/14
+----------
+ -> Correction de glitches de la théière dans les murs
+ -> Ajout d'une touche d'arrêt du jeu
+ -> Ajout d'une fonction propre d'arrêt
+ -> Implémentation du rebond des projectiles sur les murs
