@@ -18,6 +18,12 @@ void kbDown(unsigned char key, int x, int y){
 	case BACKWARD_KEY :
 	    kTab[BACKWARD_BIT] = 1;
 	    break;
+	case STRAF_LEFT_KEY :
+	    kTab[STRAF_LEFT_BIT] = 1;
+	    break;
+    	case STRAF_RIGHT_KEY :
+	    kTab[STRAF_RIGHT_BIT] = 1;
+	    break;
 	case LEFT_KEY :
 	    kTab[LEFT_BIT] = 1;
 	    break;
@@ -50,6 +56,10 @@ void kbDown(unsigned char key, int x, int y){
 	case EXIT_KEY :
 	    properQuit();
 	    break;
+	case GODMODE_KEY :
+	    kTab[GODMODE_BIT] = !kTab[GODMODE_BIT];
+	    if (kTab[DEBUG_BIT]) printf("¤ God Mode %s\n", kTab[GODMODE_BIT]?"active":"desactive");
+	    break;
     }
 }
 
@@ -61,6 +71,12 @@ void kbUp(unsigned char key, int x, int y){
 	    break;
 	case BACKWARD_KEY :
 	    kTab[BACKWARD_BIT] = 0;
+	    break;
+	case STRAF_LEFT_KEY :
+	    kTab[STRAF_LEFT_BIT] = 0;
+	    break;
+    	case STRAF_RIGHT_KEY :
+	    kTab[STRAF_RIGHT_BIT] = 0;
 	    break;
 	case LEFT_KEY :
 	    kTab[LEFT_BIT] = 0;
@@ -81,6 +97,12 @@ void kbManage(){
     }
     if (kTab[BACKWARD_BIT]){
 	goBackward(&p1);
+    }
+    if (kTab[STRAF_LEFT_BIT]){
+	goLeft(&p1);
+    }
+    if (kTab[STRAF_RIGHT_BIT]){
+	goRight(&p1);
     }
     if (kTab[LEFT_BIT]){
 	lookLeft(&p1);

@@ -21,15 +21,18 @@
 /* Keybindings */
 #define FORWARD_KEY 'z'
 #define BACKWARD_KEY 's'
+#define STRAF_LEFT_KEY 'a'
+#define STRAF_RIGHT_KEY 'e'
 #define LEFT_KEY 'q'
 #define RIGHT_KEY 'd'
 #define FIRE_KEY ' '
 #define NOCLIP_KEY 'n'
 #define CAM_KEY 'c'
-#define DEBUG_KEY 'g'
+#define DEBUG_KEY 'v'
 #define RANGE_KEY 'r'
 #define MUTE_KEY 'm'
-#define EXIT_KEY 'e'
+#define EXIT_KEY 'x'
+#define GODMODE_KEY 'g'
 /* Dimensions de la hitbox du joueur */
 #define X_HITBOX 0.4
 #define Z_HITBOX 0.4
@@ -44,7 +47,7 @@
 #define PROJ_TTL 2000
 #define MAX_FIRE_COOLDOWN 200
 /* Matrice des états des touches */
-#define NB_KEYS 10
+#define NB_KEYS 13
 #define FORWARD_BIT 0
 #define BACKWARD_BIT 1
 #define LEFT_BIT 2
@@ -55,6 +58,9 @@
 #define DEBUG_BIT 7
 #define RANGE_BIT 8
 #define MUTE_BIT 9
+#define GODMODE_BIT 10
+#define STRAF_LEFT_BIT 11
+#define STRAF_RIGHT_BIT 12
 /* Nombre maximal de joueurs ou équivalent (IA) */
 #define MAX_PLAYERS 4
 /* Caractères de la carte */

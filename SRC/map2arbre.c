@@ -144,15 +144,15 @@ char inside(int c_x, int c_z, int r, int x1, int z1, int x2, int z2){
 
     /* On mesure combien de sommets du cube sont dans le cercle */
     for (x=x1, i=0; i < 2; x=x2, i++){
-	    for (z=z1, k=0; k < 2; z=z2, k++){
-		d = distance(c_x, c_z, x, z) - r;
-		if (d>0){
-		    out ++;
-		}	
-		else if (d<0){
-		    in ++;
-		}
+	for (z=z1, k=0; k < 2; z=z2, k++){
+	    d = distance(c_x, c_z, x, z) - r;
+	    if (d>0){
+		out ++;
 	    }	
+	    else if (d<0){
+		in ++;
+	    }
+	}	
     }
 
     /* On interprète le résultat */
