@@ -108,6 +108,8 @@ void display(void){
     /* Le personnage et ses ennemis */
     dispAllPlayers();
 
+    /* Les informations à l'écran */
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -195,7 +197,7 @@ void win(){
     min = duration / 60000;
     sec = (duration % 60000) / 1000;
 
-    printf("¤ Congratulations ! You won !\n>>> time %d:%d\n>>> score : %d", min, sec, pTab.p[0].score);
+    printf("¤ Congratulations ! You won !\n>>> time %d:%d\n>>> score : %d\n", min, sec, pTab.p[0].score);
     properQuit();
 }
 

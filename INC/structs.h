@@ -43,8 +43,8 @@
 #define MAX_RANGE G_WIDTH + G_HEIGHT
 /* Unités de déplacement des projectiles */
 #define MAX_PROJ 16
-#define PROJ_MOV 0.01
-#define PROJ_TTL 2000
+#define PROJ_MOV 0.005
+#define PROJ_TTL 5000
 #define MAX_FIRE_COOLDOWN 200
 /* Matrice des états des touches */
 #define NB_KEYS 13
