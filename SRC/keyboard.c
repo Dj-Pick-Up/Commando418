@@ -1,3 +1,13 @@
+	/********************************
+	 *	    keyboard		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Gestion du clavier / souris	*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <math.h>
 #include <GL/gl.h>

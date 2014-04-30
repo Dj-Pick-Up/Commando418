@@ -1,3 +1,14 @@
+	/********************************
+	 *	    display		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Fonctions d'affichage des    *
+	 * différents éléments du jeu	*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <math.h>
 #include <GL/gl.h>

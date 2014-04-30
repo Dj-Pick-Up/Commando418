@@ -1,3 +1,16 @@
+	/********************************
+	 *	    main		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Contient les fonctions	*
+	 * principales d'animation et	*
+	 * de rafraîchissement de	*
+	 * l'écran...			*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/gl.h>

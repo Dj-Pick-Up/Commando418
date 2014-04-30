@@ -1,3 +1,15 @@
+	/********************************
+	 *	    map2arbre		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Implémente la conversion de	*
+	 * la matrice 'map' en un	*
+	 * 4-arbre 'mapTree'		*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <math.h>
 #include "structs.h"

@@ -1,12 +1,14 @@
-	/******************************************
-	 *                k-arbre                 *
-	 *========================================*
-	 * author : BRAINE Alexis                 *
-	 *----------------------------------------*
-	 * Implémente les fonctions de création/  *
-	 * traitement/suppression d'un K-arbre    *
-	 * (K défini dans k-arbre.h)              *
-	 ******************************************/
+	/********************************
+	 *	    k-arbre		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Implémente les fonctions de	*
+	 * création/traitement/		*
+	 * suppression d'un K-arbre	*
+	 * (K défini dans k-arbre.h)	*
+	 ********************************/
 
 
 

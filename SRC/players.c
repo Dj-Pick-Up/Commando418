@@ -1,3 +1,14 @@
+	/********************************
+	 *	    players		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Implémente les fonctions de	*
+	 * déplacement/tir des joueurs	*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <math.h>
 #include "structs.h"

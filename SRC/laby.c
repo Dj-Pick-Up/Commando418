@@ -1,3 +1,17 @@
+	/********************************
+	 *	    laby		*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Génération du labyrinthe	*
+	 * suivant un algorithme custom *
+	 * basé sur le nombre de cases	*
+	 * libres adjacentes à chaque	*
+	 * case...			*
+	 ********************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

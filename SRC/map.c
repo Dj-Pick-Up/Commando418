@@ -1,3 +1,14 @@
+	/********************************
+	 *	    map			*
+	 *==============================*
+	 * Alexis Braine -		*
+	 *		  Arslen Remaci *
+	 *------------------------------*
+	 * Contient les fonctions de	*
+	 * gestion de la matrice 'map'	*
+	 ********************************/
+
+
 #include "structs.h"
 #include "config.h"
 #include "map.h"
