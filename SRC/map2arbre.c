@@ -72,11 +72,13 @@ char isLeaf(karbre tree){
 
 
 void printTree(){
+    /* Affiche l'arbre de la map sur stdout (debugage) */
     kAfficher(mapTree, printLeaf);
 }
 
 
 void printLeaf(char e){
+    /* Fonction d'affichage de l'élément contenu dans une feuille */
     switch(e){
 	case FREE_CHAR :
 	    printf("Libre");
@@ -93,7 +95,8 @@ void dispTree(){
 }
 
 
-void dispTreeRange(int c_x, int c_z, int range, int x1, int z1, int x2, int z2, karbre tree){ 
+void dispTreeRange(int c_x, int c_z, int range, int x1, int z1, int x2, int z2, karbre tree){
+    /* Affiche récursivement la map à portée du joueur à partir de l'arbre */
     int x12 = (x1 + x2) / 2;
     int z12 = (z1 + z2) / 2;
 
@@ -154,7 +157,7 @@ char inside(int c_x, int c_z, int r, int x1, int z1, int x2, int z2){
     int in = 0, out = 0;
     int d;
 
-    /* On mesure combien de sommets du cube sont dans le cercle */
+    /* On mesure combien de sommets du carré sont dans le cercle */
     for (x=x1, i=0; i < 2; x=x2, i++){
 	for (z=z1, k=0; k < 2; z=z2, k++){
 	    d = distance(c_x, c_z, x, z) - r;
@@ -169,22 +172,22 @@ char inside(int c_x, int c_z, int r, int x1, int z1, int x2, int z2){
 
     /* On interprète le résultat */
     if (in == 4){
-	// Le cube est dans la sphère
+	// Le caeeé est dans le cercle
 	return(INSIDE);
     }
     else if (out == 4){
-	// Les 8 cotés du cube sont hors de la sphère, reste à déterminer si elle coupe le cube
-	// On regarde donc la position du centre de la sphere par rapport au cube dont on augmente chaque dimension de r (de chaque coté)
+	// Les 4 cotés du carré sont hors du cercle, reste à déterminer si il coupe le carré
+	// On regarde donc la position du centre du cercle par rapport au carré dont on augmente chaque dimension de r (de chaque coté)
 	if (((c_x <= x1 - r) || (c_x >= x2 + r)) || ((c_z <= z1 - r) || (c_z >= z2 + r))){
-	    // La sphere est hors du cube
+	    // Le cercle est hors du carré
     	    return(OUTSIDE);
 	}
     }
 
     // Si on est ici, c'est que :
-    //	- soit les 8 sommets du cube sont extérieurs à la sphere, mais on a détecté une intersection entre la sphère et le cube
-    //	- soit des cotés du cube sont dans la sphère et et d'autres non
-    // Dans tous les cas, on est sûr que la sphère intersecte le cube
+    //	- soit les 4 sommets du carré sont extérieurs au cercle, mais on a détecté une intersection entre le cercle et le carré
+    //	- soit des cotés du carré sont dans le carré et et d'autres non
+    // Dans tous les cas, on est sûr que le cercle intersecte le carré
 
     // On regarde si on est au niveau du pixel
     if (x2 -x1 == 1 || z2 - z1 == 1){

@@ -121,8 +121,6 @@ void display(void){
     /* Le personnage et ses ennemis */
     dispAllPlayers();
 
-    /* Les informations à l'écran */
-
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 

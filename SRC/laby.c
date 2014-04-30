@@ -30,7 +30,7 @@ char testCell(int i, int j){
 
 
 char testLaby(){
-    int sum=0;	    // La somme de tous les éléments du maprinthe
+    int sum=0;	    // La somme de tous les éléments du labrinthe
     int endLine=0;  // La somme de toutes les cases de dernière ligne
     int out;
     int i, j;

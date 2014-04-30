@@ -180,7 +180,7 @@ void delProj(player * p, int i){
 
 void killMob(int i){
     /* Tue le mob n°i et le fait "disparaître" */
-    if (i < 1 && i >= pTab.n){	// évite de "tuer" le joueur par cette méthode
+    if (i <= 1 && i >= pTab.n){	// évite de "tuer" le joueur par cette méthode
 	return;
     }
 
