@@ -23,12 +23,15 @@ int main(int argc, char * argv[]){
     struct timeval startTimeTV;
 
     srand(time(NULL));
-    p1.x = (X_MIN + X_MAX) / 2 + 0.5;
-    p1.y = 0.3;
-    p1.z = 0.5;
-    p1.angle = M_PI / 2;
-    p1.proj.n = 0;
-    p1.health = MAX_HEALTH;
+    /* Initialisation de players */
+    // Ne contient que le joueur, pour l'instant
+    pTab.n = 1;
+    pTab.p[0].x = (X_MIN + X_MAX) / 2 + 0.5;
+    pTab.p[0].y = 0.3;
+    pTab.p[0].z = 0.5;
+    pTab.p[0].angle = M_PI / 2;
+    pTab.p[0].proj.n = 0;
+    pTab.p[0].health = MAX_HEALTH;
     for (i=X_MIN; i<X_MAX; i++){
 	for (j=Z_MIN; j<Z_MAX; j++){
 	    setFree(i,j);
@@ -101,20 +104,15 @@ void display(void){
     /* Les projectiles */
     dispAllProj();
 
-    /* Le personnage */
-    glPushMatrix();
-    glColor3f(0.9, 0, 0);
-    glTranslatef(p1.x, p1.y, p1.z);
-    glRotatef(((float) - p1.angle) / M_PI * 180 , 0, 1, 0);
-    glutWireTeapot(0.3);
-    glPopMatrix();
+    /* Le personnage et ses ennemis */
+    dispAllPlayers();
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
     /* POISTIONNEMENT DE L'OBSERVATEUR ET DU FRUSTUM */
-    glFrustum(-0.5, 0.5, -0.5, 0.5, 0.7, MAX_RANGE);
-    gluLookAt(p1.x - 1 * cos(p1.angle), p1.y + 0.4 + cam_height, p1.z - 1 * sin(p1.angle), p1.x, p1.y  + 0.3, p1.z, 0, 1, 0);
+    glFrustum(-0.5, 0.5, -0.5, 0.5, 0.6, MAX_RANGE);
+    gluLookAt(pTab.p[0].x - 1 * cos(pTab.p[0].angle), pTab.p[0].y + 0.4 + cam_height, pTab.p[0].z - 1 * sin(pTab.p[0].angle), pTab.p[0].x, pTab.p[0].y  + 0.3, pTab.p[0].z, 0, 1, 0);
 
     glFlush();
 }
@@ -145,14 +143,15 @@ void anim(void){
 
     
     /* Calcule la progression automatique des projectiles */
-    manageProj(&p1);
+    manageAllProj();
 
     /* Teste si l'on est mort */
-    if (p1.health <= 0){
+    if (pTab.p[0].health <= 0){
 	lose();
     }
+
     /* Teste si l'on a atteint l'arrivée */
-    if (floor(p1.z) == Z_MAX - 1 && floor(p1.x) == exit_x){
+    if (floor(pTab.p[0].z) == Z_MAX - 1 && floor(pTab.p[0].x) == exit_x){
 	win();
     }
 

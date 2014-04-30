@@ -62,7 +62,8 @@
 #define STRAF_LEFT_BIT 11
 #define STRAF_RIGHT_BIT 12
 /* Nombre maximal de joueurs ou équivalent (IA) */
-#define MAX_PLAYERS 4
+#define MAX_MOBS 4
+#define MAX_PLAYERS (MAX_MOBS + 1)
 /* Caractères de la carte */
 #define OBSTACLE_CHAR 1
 #define FREE_CHAR 0

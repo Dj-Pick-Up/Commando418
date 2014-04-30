@@ -93,36 +93,36 @@ void kbUp(unsigned char key, int x, int y){
 
 void kbManage(){
     if (kTab[FORWARD_BIT]){
-	goForward(&p1);
+	goForward(&pTab.p[0]);
     }
     if (kTab[BACKWARD_BIT]){
-	goBackward(&p1);
+	goBackward(&pTab.p[0]);
     }
     if (kTab[STRAF_LEFT_BIT]){
-	goLeft(&p1);
+	goLeft(&pTab.p[0]);
     }
     if (kTab[STRAF_RIGHT_BIT]){
-	goRight(&p1);
+	goRight(&pTab.p[0]);
     }
     if (kTab[LEFT_BIT]){
-	lookLeft(&p1);
+	lookLeft(&pTab.p[0]);
     }
     if (kTab[RIGHT_BIT]){
-	lookRight(&p1);
+	lookRight(&pTab.p[0]);
     } 
     if (kTab[FIRE_BIT]){   
-	fire(&p1);
+	fire(&pTab.p[0]);
     }
-///* DEBUG */ printf("(%f,%f,%f) [%f]\n", p1.x, p1.y, p1.z, p1.angle);
+///* DEBUG */ printf("(%f,%f,%f) [%f]\n", pTab.p[0].x, pTab.p[0].y, pTab.p[0].z, pTab.p[0].angle);
 }
 
 
 void mouseMoveManager(int x, int y){
     if (x < WIN_WIDTH / 2){
-	lookLeft(&p1);
+	lookLeft(&pTab.p[0]);
     }
     if (x > WIN_WIDTH / 2){
-	lookRight(&p1);
+	lookRight(&pTab.p[0]);
     }
 
    if (x != WIN_WIDTH / 2 || y != WIN_HEIGHT / 2){ 

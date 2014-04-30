@@ -4,7 +4,9 @@
 #include "k-arbre.h"
 
 /* GLOBALS VARS */
-player p1;
+/* tableau des joueurs */
+players pTab;
+/* Tableau des touches/switchs enfoncés */
 keyTab kTab;
 /* Mesure du temps */
 int lastMoment;

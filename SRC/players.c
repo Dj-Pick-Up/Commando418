@@ -6,8 +6,8 @@
 
 
 void goForward(player * p){
-    float dx = cos(p1.angle) * MOV_UNIT * deltaMoment;
-    float dz = sin(p1.angle) * MOV_UNIT * deltaMoment;
+    float dx = cos(p->angle) * MOV_UNIT * deltaMoment;
+    float dz = sin(p->angle) * MOV_UNIT * deltaMoment;
 
     if ((p->x + dx < X_MIN || p->x + dx > X_MAX || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z - Z_HITBOX)) || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z + Z_HITBOX))) && !kTab[NOCLIP_BIT]){
 	dx = 0;
@@ -22,8 +22,8 @@ void goForward(player * p){
 
 
 void goBackward(player * p){
-    float dx = cos(p1.angle) * MOV_UNIT * deltaMoment;
-    float dz = sin(p1.angle) * MOV_UNIT * deltaMoment;
+    float dx = cos(p->angle) * MOV_UNIT * deltaMoment;
+    float dz = sin(p->angle) * MOV_UNIT * deltaMoment;
 
     if ((p->x - dx < X_MIN || p->x - dx > X_MAX || !isFree(floor(p->x - dx - ((dx > 0)?1:-1) * X_HITBOX), floor(p->z - Z_HITBOX)) || !isFree(floor(p->x - dx - ((dx > 0)?1:-1) * X_HITBOX), floor(p->z + Z_HITBOX))) && !kTab[NOCLIP_BIT]){
 	dx = 0;
@@ -38,8 +38,8 @@ void goBackward(player * p){
 
 
 void goLeft(player * p){
-    float dx = cos(p1.angle - M_PI/2) * MOV_UNIT * deltaMoment;
-    float dz = sin(p1.angle - M_PI/2) * MOV_UNIT * deltaMoment;
+    float dx = cos(p->angle - M_PI/2) * MOV_UNIT * deltaMoment;
+    float dz = sin(p->angle - M_PI/2) * MOV_UNIT * deltaMoment;
 
     if ((p->x + dx < X_MIN || p->x + dx > X_MAX || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z - Z_HITBOX)) || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z + Z_HITBOX))) && !kTab[NOCLIP_BIT]){
 	dx = 0;
@@ -54,8 +54,8 @@ void goLeft(player * p){
 
 
 void goRight(player * p){
-    float dx = cos(p1.angle + M_PI/2) * MOV_UNIT * deltaMoment;
-    float dz = sin(p1.angle + M_PI/2) * MOV_UNIT * deltaMoment;
+    float dx = cos(p->angle + M_PI/2) * MOV_UNIT * deltaMoment;
+    float dz = sin(p->angle + M_PI/2) * MOV_UNIT * deltaMoment;
 
     if ((p->x + dx < X_MIN || p->x + dx > X_MAX || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z - Z_HITBOX)) || !isFree(floor(p->x + dx + ((dx > 0)?1:-1) * X_HITBOX), floor(p->z + Z_HITBOX))) && !kTab[NOCLIP_BIT]){
 	dx = 0;
@@ -94,6 +94,15 @@ void fire(player * p){
     p->proj.n ++;
 
     p->fire_cooldown = MAX_FIRE_COOLDOWN;
+}
+
+
+void manageAllProj(){
+    int i;
+
+    for (i=0; i<pTab.n; i++){
+	manageProj(&(pTab.p[i]));
+    }
 }
 
 

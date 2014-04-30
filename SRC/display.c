@@ -68,15 +68,18 @@ void ground(void){
     /* Signale l'arrivée */
     glPushMatrix();
     glTranslatef(exit_x + 0.5, 10, Z_MAX - 0.5);
-    glutWireTorus(2, 2.5, 20, 20);
+    glutSolidTorus(2, 2.5, 20, 20);
     glPopMatrix();
 }   
 
 
 void dispAllProj(){
-    // Affichera tous les projectiles
-    // En attendant, il n'y a que le joueur, donc...
-    dispProj(&p1);
+    // Affiche tous les projectiles
+    int i;
+
+    for (i=0; i<pTab.n; i++){
+	dispProj(&(pTab.p[i]));
+    }
 }
 
 
@@ -90,6 +93,26 @@ void dispProj(player * p){
 	glutWireSphere(0.1, 20, 20);
 	glPopMatrix();
     }
+}
+
+
+void dispAllPlayers(){
+    // Affichera tous les joueurs
+    int i;
+
+    for (i=0; i<pTab.n; i++){
+	dispPlayer(&(pTab.p[i]));
+    }
+}
+
+
+void dispPlayer(player * p){
+    glPushMatrix();
+    glColor3f(0.9, 0, 0);
+    glTranslatef(p->x, p->y, p->z);
+    glRotatef(((float) - p->angle) / M_PI * 180 , 0, 1, 0);
+    glutWireTeapot(0.3);
+    glPopMatrix();
 }
 
 

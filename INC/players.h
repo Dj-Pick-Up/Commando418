@@ -9,6 +9,7 @@ void goRight(player * p);
 void lookLeft(player * p);
 void lookRight(player * p);
 void fire(player * p);
+void manageAllProj();
 void manageProj(player * p);
 
 #endif

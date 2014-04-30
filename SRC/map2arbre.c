@@ -77,7 +77,7 @@ void printLeaf(char e){
 
 
 void dispTree(){
-    dispTreeRange(p1.x, p1.z, cam_range, X_MIN, Z_MIN, X_MAX, Z_MAX, mapTree);
+    dispTreeRange(pTab.p[0].x, pTab.p[0].z, cam_range, X_MIN, Z_MIN, X_MAX, Z_MAX, mapTree);
 }
 
 

@@ -50,3 +50,13 @@
 ----------
  -> Ajout du strafing (déplacement latéral)
  -> Avancement du frustum (corrige un bug graphique)
+
+
+* TODO
+======
+ -> Ajouter un affiche des PV/points/timer sur l'écran
+ -> Ajouter des ennemis avec une IA leur permettant de trouver le meilleur
+ chemin vers le joueur dans le labyrinthe
+ -> Ajouter des textures
+ -> Implémenter éclairage
+ -> Implémenter sons
