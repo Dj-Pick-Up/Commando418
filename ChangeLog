@@ -51,6 +51,12 @@
  -> Ajout du strafing (déplacement latéral)
  -> Avancement du frustum (corrige un bug graphique)
 
++ 30/04/14
+----------
+ -> Gestion de plusieurs "joueurs" (1 joueurs + n IAs) activée
+ -> Implémentation de la vie, des scores
+ -> Implémentation des dégats des projectiles
+
 
 * TODO
 ======

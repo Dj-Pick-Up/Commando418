@@ -31,7 +31,8 @@ int main(int argc, char * argv[]){
     pTab.p[0].z = 0.5;
     pTab.p[0].angle = M_PI / 2;
     pTab.p[0].proj.n = 0;
-    pTab.p[0].health = MAX_HEALTH;
+    pTab.p[0].health = PLAYER_HEALTH;
+    pTab.p[0].score = 0;
     for (i=X_MIN; i<X_MAX; i++){
 	for (j=Z_MIN; j<Z_MAX; j++){
 	    setFree(i,j);
@@ -194,7 +195,7 @@ void win(){
     min = duration / 60000;
     sec = (duration % 60000) / 1000;
 
-    printf("¤ Congratulations ! You won !\n¤ Your time is %d:%d\n", min, sec);
+    printf("¤ Congratulations ! You won !\n>>> time %d:%d\n>>> score : %d", min, sec, pTab.p[0].score);
     properQuit();
 }
 

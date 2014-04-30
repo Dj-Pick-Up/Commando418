@@ -11,5 +11,7 @@ void lookRight(player * p);
 void fire(player * p);
 void manageAllProj();
 void manageProj(player * p);
+void delProj(player * p, int i);
+void killMob(int i);
 
 #endif

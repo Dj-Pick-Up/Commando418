@@ -74,7 +74,10 @@
 #define CAM_MOV 0.04
 #define RANGE_MOV 0.1
 /* Détails sur le joueur */
-#define MAX_HEALTH 20
+#define PLAYER_HEALTH 20
+#define MOB_HEALTH 10
+/* Dégats des armes diverses */
+#define PLASMA_DAMAGE 2
 
 /* STRUCTS */
 typedef struct point_struct{
@@ -105,6 +108,7 @@ typedef struct player_struct{
     float z;
     float angle;
     int health;
+    int score;
     projectiles proj;
     int fire_cooldown;
 }player;
