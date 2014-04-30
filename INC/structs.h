@@ -7,8 +7,8 @@
 /* Les durées de vie sont en millisecondes */
 /* Les facteurs de vitesse de déplacement (MOV_UNIT, etc) sont en case/milliseconde */
 /* Paramètres de la fenêtre */
-#define WIN_HEIGHT 1000
-#define WIN_WIDTH 1000
+#define WIN_HEIGHT 600
+#define WIN_WIDTH 600
 /* Dimensions du terrain */
 // On doit avoir X_MAX - X_MIN une puissance de 2
 // De même pour Z_MAX - Z_MIN

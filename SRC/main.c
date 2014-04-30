@@ -224,3 +224,8 @@ void properQuit(){
     printf("¤ Bye !\n¤ Merci d'avoir joue !\n");
     exit(EXIT_SUCCESS);
 }
+
+
+int distance(int x1, int z1, int x2, int z2){
+    return(sqrt(pow(x1 - x2, 2) + pow(z1 - z2, 2)));
+}

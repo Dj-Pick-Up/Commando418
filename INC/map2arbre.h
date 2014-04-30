@@ -17,6 +17,5 @@ void dispTree();
 void dispTreeRange(int c_x, int c_z, int range, int x1, int z1, int x2, int z2, karbre tree);
 void dispCell(karbre tree, int x1, int z1, int x2, int z2);
 char inside(int c_x, int c_z, int r, int x1, int z1, int x2, int z2);
-int distance(int x1, int z1, int x2, int z2);
 
 #endif

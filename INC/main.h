@@ -9,5 +9,6 @@ void calcFPS();
 void win();
 void lose();
 void properQuit();
+int distance(int x1, int z1, int x2, int z2);
 
 #endif

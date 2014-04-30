@@ -17,6 +17,7 @@
 #include "config.h"
 #include "map2arbre.h"
 #include "display.h"
+#include "main.h"
 
 
 void genTree(){
@@ -198,9 +199,4 @@ char inside(int c_x, int c_z, int r, int x1, int z1, int x2, int z2){
 	// Sinon, on continue d'affiner
 	return(MIXED);
     }
-}
-
-
-int distance(int x1, int z1, int x2, int z2){
-    return(sqrt(pow(x1 - x2, 2) + pow(z1 - z2, 2)));
 }
