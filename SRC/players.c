@@ -145,7 +145,7 @@ void manageProj(player * p){
 
 	/* On teste s'il blesse/tue quelqu'un */
 	for (j=0; j<pTab.n && cont; j++){
-	    if (p->proj.p[i].x > pTab.p[j].x - X_HITBOX && p->proj.p[i].x < pTab.p[j].x + X_HITBOX && p->proj.p[i].z > pTab.p[j].z - Z_HITBOX && p->proj.p[i].z < pTab.p[j].z + Z_HITBOX){
+	    if (p->proj.p[i].x > pTab.p[j].x - X_HITBOX && p->proj.p[i].x < pTab.p[j].x + X_HITBOX && p->proj.p[i].z > pTab.p[j].z - Z_HITBOX && p->proj.p[i].z < pTab.p[j].z + Z_HITBOX && (j != 0 || !kTab[GODMODE_BIT])){
 		if (kTab[DEBUG_BIT]) printf("-> %d degats infliges au joueur %d\n", PLASMA_DAMAGE, j);
 		pTab.p[j].health -= PLASMA_DAMAGE;
 		p->score += PLASMA_DAMAGE;  // La personne à l'origine de ce tir gagne les points correspondants
